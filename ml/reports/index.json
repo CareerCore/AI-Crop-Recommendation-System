@@ -1,0 +1,294 @@
+{
+  "generated_at": "2026-11-22T11:56:37",
+  "modules": [
+    {
+      "key": "crop_recommendation",
+      "title": "Crop Recommendation Engine",
+      "description": "Recommends the best-suited crop (22 classes) from soil nutrients, climate and rainfall.",
+      "source": "Public crop recommendation dataset (Kaggle, 2,200 field records)",
+      "kind": "tabular",
+      "files": [
+        "Crop_recommendation.csv"
+      ],
+      "targets": [
+        {
+          "target": "crop",
+          "classes": [
+            "apple",
+            "banana",
+            "blackgram",
+            "chickpea",
+            "coconut",
+            "coffee",
+            "cotton",
+            "grapes",
+            "jute",
+            "kidneybeans",
+            "lentil",
+            "maize",
+            "mango",
+            "mothbeans",
+            "mungbean",
+            "muskmelon",
+            "orange",
+            "papaya",
+            "pigeonpeas",
+            "pomegranate",
+            "rice",
+            "watermelon"
+          ],
+          "n_classes": 22,
+          "rows": 2200,
+          "rows_source": 2200,
+          "split": "stratified random 80/20",
+          "n_train": 1760,
+          "n_val": 0,
+          "n_test": 440,
+          "selected_model": "HistGradientBoosting",
+          "selection_metric": "cross-validated macro-F1",
+          "selection_score": 0.9931695730811653,
+          "test": {
+            "accuracy": 0.9886363636363636,
+            "macro_precision": 0.9892660369933097,
+            "macro_recall": 0.9886363636363636,
+            "macro_f1": 0.9886221288339389,
+            "weighted_f1": 0.9886221288339389,
+            "errors": 5,
+            "n": 440,
+            "acc_ci_low": 0.9736773922095011,
+            "acc_ci_high": 0.9951367072349855,
+            "log_loss": 0.031771043098087426
+          },
+          "baseline": {
+            "name": "MinMax + Random Forest (grid search)",
+            "accuracy": 0.9931818181818182,
+            "macro_precision": 0.9935064935064936,
+            "macro_recall": 0.993181818181818,
+            "macro_f1": 0.9931775541531639,
+            "weighted_f1": 0.9931775541531639,
+            "errors": 3,
+            "n": 440,
+            "acc_ci_low": 0.9801477329182605,
+            "acc_ci_high": 0.9976785907071049,
+            "log_loss": 0.050147874797916284
+          },
+          "majority_macro_f1": 0.003952569169960474,
+          "per_class": [
+            {
+              "label": "apple",
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 20
+            },
+            {
+              "label": "banana",
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 20
+            },
+            {
+              "label": "blackgram",
+              "precision": 1.0,
+              "recall": 0.95,
+              "f1": 0.9743589743589743,
+              "support": 20
+            },
+            {
+              "label": "chickpea",
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 20
+            },
+            {
+              "label": "coconut",
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 20
+            },
+            {
+              "label": "coffee",
+              "precision": 0.9523809523809523,
+              "recall": 1.0,
+              "f1": 0.975609756097561,
+              "support": 20
+            },
+            {
+              "label": "cotton",
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 20
+            },
+            {
+              "label": "grapes",
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 20
+            },
+            {
+              "label": "jute",
+              "precision": 0.9523809523809523,
+              "recall": 1.0,
+              "f1": 0.975609756097561,
+              "support": 20
+            },
+            {
+              "label": "kidneybeans",
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 20
+            },
+            {
+              "label": "lentil",
+              "precision": 1.0,
+              "recall": 0.9,
+              "f1": 0.9473684210526315,
+              "support": 20
+            },
+            {
+              "label": "maize",
+              "precision": 0.95,
+              "recall": 0.95,
+              "f1": 0.95,
+              "support": 20
+            },
+            {
+              "label": "mango",
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 20
+            },
+            {
+              "label": "mothbeans",
+              "precision": 0.9090909090909091,
+              "recall": 1.0,
+              "f1": 0.9523809523809523,
+              "support": 20
+            },
+            {
+              "label": "mungbean",
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 20
+            },
+            {
+              "label": "muskmelon",
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 20
+            },
+            {
+              "label": "orange",
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 20
+            },
+            {
+              "label": "papaya",
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 20
+            },
+            {
+              "label": "pigeonpeas",
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 20
+            },
+            {
+              "label": "pomegranate",
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 20
+            },
+            {
+              "label": "rice",
+              "precision": 1.0,
+              "recall": 0.95,
+              "f1": 0.9743589743589743,
+              "support": 20
+            },
+            {
+              "label": "watermelon",
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 20
+            }
+          ],
+          "top_confusions": [
+            [
+              2,
+              "lentil",
+              "mothbeans"
+            ],
+            [
+              1,
+              "rice",
+              "jute"
+            ],
+            [
+              1,
+              "maize",
+              "coffee"
+            ],
+            [
+              1,
+              "blackgram",
+              "maize"
+            ]
+          ],
+          "figures": {
+            "class_distribution": "ml/reports/figures/class_distribution.png",
+            "eda_distributions": "ml/reports/figures/eda_distributions.png",
+            "eda_correlation": "ml/reports/figures/eda_correlation.png",
+            "eda_profiles": "ml/reports/figures/eda_profiles.png",
+            "selection": "ml/reports/figures/model_selection.png",
+            "confusion": "ml/reports/figures/confusion_matrix.png",
+            "per_class": "ml/reports/figures/per_class_metrics.png",
+            "importance": "ml/reports/figures/feature_importance.png"
+          },
+          "example": {
+            "input": {
+              "N": 13.0,
+              "P": 23.0,
+              "K": 6.0,
+              "temperature": 23.96147583,
+              "humidity": 90.26408017,
+              "ph": 7.365338111,
+              "rainfall": 102.6958703
+            },
+            "output": {
+              "label": "orange",
+              "confidence": 0.9995
+            },
+            "true": "orange"
+          },
+          "notes": [
+            "Minority class 'rice' is only 4.5% of the data; classes are weighted and per-class recall is reported.",
+            "The accuracy gain over the reference is within sampling noise on this test set (95% intervals overlap); the main gains are validation rigour and a reproducible model package."
+          ],
+          "version": "2.0.0",
+          "artifact": "ml/artifacts/model.joblib",
+          "date_range": null,
+          "seconds": 563
+        }
+      ]
+    }
+  ],
+  "skipped": [],
+  "overview_figure": "ml/reports/overview.png"
+}
