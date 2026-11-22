@@ -1,7 +1,3 @@
-
-
-
-
 # AI Crop Recommendation System
 
 **A trained, validated and packaged machine-learning model that recommends**
@@ -63,12 +59,12 @@ Recommends the best-suited crop (22 classes) from soil nutrients, climate and ra
 | Weighted-F1 | 0.993 | **0.989** |
 | Test mistakes | 3 / 440 | **5 / 440** |
 
-|                                                                                                                      |                                                                                              |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| **Model comparison** ![Model comparison](ml/reports/figures/model_selection.png)                                     | **Confusion matrix** ![Confusion matrix](ml/reports/figures/confusion_matrix.png)            |
-| **Per-class precision / recall / F1** ![Per-class precision / recall / F1](ml/reports/figures/per_class_metrics.png) | **Label distribution** ![Label distribution](ml/reports/figures/class_distribution.png)      |
-| **Feature importance** ![Feature importance](ml/reports/figures/feature_importance.png)                              | **Feature distributions** ![Feature distributions](ml/reports/figures/eda_distributions.png) |
-| **Crop profiles** ![Crop profiles](ml/reports/figures/eda_profiles.png)                                              |                                                                                              |
+|                                                                                             |                                                                                              |
+| ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| **Model comparison** ![Model comparison](ml/reports/figures/model_selection.png)            | **Feature distributions** ![Feature distributions](ml/reports/figures/eda_distributions.png) |
+| **Confusion matrix** ![Confusion matrix](ml/reports/figures/confusion_matrix.png)           | **Per-class precision / recall / F1** ![Per-class precision / recall / F1](ml/reports/figures/per_class_metrics.png)                                                    |
+| **Label distribution** ![Label distribution](ml/reports/figures/class_distribution.png)     | **Crop profiles** ![Crop profiles](ml/reports/figures/eda_profiles.png)                                                         | 
+|**Feature importance** ![Feature importance](ml/reports/figures/feature_importance.png)      |
 
 Weakest classes on the test set: lentil (F1 0.947), maize (F1 0.950), mothbeans (F1 0.952), blackgram (F1 0.974), rice (F1 0.974).
 
