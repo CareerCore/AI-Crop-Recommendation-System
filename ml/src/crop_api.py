@@ -8,7 +8,7 @@ Swagger UI:
     http://127.0.0.1:8000/docs
 
 Use the same module without a server:
-    python ml/src/crop_api.py --once "{\"N\":90,\"P\":42,\"K\":43,\"temperature\":20.8,\"humidity\":82,\"ph\":6.5,\"rainfall\":202.9}"
+    python ml/src/crop_api.py --once "{\"P\":42,\"humidity\":82,\"rainfall\":202.9}"
 
 The endpoint loads the existing model bundle produced by train_all.py:
     ml/artifacts/crop_recommendation/crop/model.joblib

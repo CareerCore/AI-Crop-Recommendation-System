@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T13:13:50",
+  "generated_at": "2026-11-22T15:54:14",
   "modules": [
     {
       "key": "crop_recommendation",
@@ -44,33 +44,33 @@
           "n_train": 1760,
           "n_val": 0,
           "n_test": 440,
-          "selected_model": "HistGradientBoosting",
+          "selected_model": "RandomForest",
           "selection_metric": "cross-validated macro-F1",
-          "selection_score": 0.9931695730811653,
+          "selection_score": 0.9618543150505283,
           "test": {
-            "accuracy": 0.9886363636363636,
-            "macro_precision": 0.9892660369933097,
-            "macro_recall": 0.9886363636363636,
-            "macro_f1": 0.9886221288339389,
-            "weighted_f1": 0.9886221288339389,
-            "errors": 5,
+            "accuracy": 0.9477272727272728,
+            "macro_precision": 0.9507193862756064,
+            "macro_recall": 0.9477272727272726,
+            "macro_f1": 0.9476923117079494,
+            "weighted_f1": 0.9476923117079495,
+            "errors": 23,
             "n": 440,
-            "acc_ci_low": 0.9736773922095011,
-            "acc_ci_high": 0.9951367072349855,
-            "log_loss": 0.031771043098087426
+            "acc_ci_low": 0.922785349806458,
+            "acc_ci_high": 0.9649187320101181,
+            "log_loss": 0.1646072551729859
           },
           "baseline": {
             "name": "MinMax + Random Forest (grid search)",
-            "accuracy": 0.9931818181818182,
-            "macro_precision": 0.9935064935064936,
-            "macro_recall": 0.993181818181818,
-            "macro_f1": 0.9931775541531639,
-            "weighted_f1": 0.9931775541531639,
-            "errors": 3,
+            "accuracy": 0.9386363636363636,
+            "macro_precision": 0.9427492385743373,
+            "macro_recall": 0.9386363636363636,
+            "macro_f1": 0.9391608511936791,
+            "weighted_f1": 0.939160851193679,
+            "errors": 27,
             "n": 440,
-            "acc_ci_low": 0.9801477329182605,
-            "acc_ci_high": 0.9976785907071049,
-            "log_loss": 0.050147874797916284
+            "acc_ci_low": 0.9121915217862393,
+            "acc_ci_high": 0.9574881116685787,
+            "log_loss": 0.162842545872024
           },
           "majority_macro_f1": 0.003952569169960474,
           "per_class": [
@@ -91,15 +91,15 @@
             {
               "label": "blackgram",
               "precision": 1.0,
-              "recall": 0.95,
-              "f1": 0.9743589743589743,
+              "recall": 0.9,
+              "f1": 0.9473684210526315,
               "support": 20
             },
             {
               "label": "chickpea",
-              "precision": 1.0,
+              "precision": 0.9523809523809523,
               "recall": 1.0,
-              "f1": 1.0,
+              "f1": 0.975609756097561,
               "support": 20
             },
             {
@@ -111,16 +111,16 @@
             },
             {
               "label": "coffee",
-              "precision": 0.9523809523809523,
+              "precision": 1.0,
               "recall": 1.0,
-              "f1": 0.975609756097561,
+              "f1": 1.0,
               "support": 20
             },
             {
               "label": "cotton",
-              "precision": 1.0,
+              "precision": 0.9523809523809523,
               "recall": 1.0,
-              "f1": 1.0,
+              "f1": 0.975609756097561,
               "support": 20
             },
             {
@@ -132,30 +132,30 @@
             },
             {
               "label": "jute",
-              "precision": 0.9523809523809523,
+              "precision": 0.9090909090909091,
               "recall": 1.0,
-              "f1": 0.975609756097561,
+              "f1": 0.9523809523809523,
               "support": 20
             },
             {
               "label": "kidneybeans",
               "precision": 1.0,
-              "recall": 1.0,
-              "f1": 1.0,
+              "recall": 0.95,
+              "f1": 0.9743589743589743,
               "support": 20
             },
             {
               "label": "lentil",
               "precision": 1.0,
-              "recall": 0.9,
-              "f1": 0.9473684210526315,
+              "recall": 0.95,
+              "f1": 0.9743589743589743,
               "support": 20
             },
             {
               "label": "maize",
-              "precision": 0.95,
-              "recall": 0.95,
-              "f1": 0.95,
+              "precision": 0.7894736842105263,
+              "recall": 0.75,
+              "f1": 0.7692307692307693,
               "support": 20
             },
             {
@@ -167,9 +167,9 @@
             },
             {
               "label": "mothbeans",
-              "precision": 0.9090909090909091,
-              "recall": 1.0,
-              "f1": 0.9523809523809523,
+              "precision": 0.7916666666666666,
+              "recall": 0.95,
+              "f1": 0.8636363636363636,
               "support": 20
             },
             {
@@ -188,9 +188,9 @@
             },
             {
               "label": "orange",
-              "precision": 1.0,
-              "recall": 1.0,
-              "f1": 1.0,
+              "precision": 0.7083333333333334,
+              "recall": 0.85,
+              "f1": 0.7727272727272727,
               "support": 20
             },
             {
@@ -203,22 +203,22 @@
             {
               "label": "pigeonpeas",
               "precision": 1.0,
-              "recall": 1.0,
-              "f1": 1.0,
+              "recall": 0.95,
+              "f1": 0.9743589743589743,
               "support": 20
             },
             {
               "label": "pomegranate",
-              "precision": 1.0,
-              "recall": 1.0,
-              "f1": 1.0,
+              "precision": 0.8125,
+              "recall": 0.65,
+              "f1": 0.7222222222222222,
               "support": 20
             },
             {
               "label": "rice",
               "precision": 1.0,
-              "recall": 0.95,
-              "f1": 0.9743589743589743,
+              "recall": 0.9,
+              "f1": 0.9473684210526315,
               "support": 20
             },
             {
@@ -231,22 +231,27 @@
           ],
           "top_confusions": [
             [
-              2,
-              "lentil",
+              7,
+              "pomegranate",
+              "orange"
+            ],
+            [
+              4,
+              "maize",
               "mothbeans"
             ],
             [
-              1,
+              3,
+              "orange",
+              "pomegranate"
+            ],
+            [
+              2,
               "rice",
               "jute"
             ],
             [
-              1,
-              "maize",
-              "coffee"
-            ],
-            [
-              1,
+              2,
               "blackgram",
               "maize"
             ]
@@ -263,17 +268,13 @@
           },
           "example": {
             "input": {
-              "N": 13.0,
               "P": 23.0,
-              "K": 6.0,
-              "temperature": 23.96147583,
               "humidity": 90.26408017,
-              "ph": 7.365338111,
               "rainfall": 102.6958703
             },
             "output": {
               "label": "orange",
-              "confidence": 0.9995
+              "confidence": 0.7782
             },
             "true": "orange"
           },
@@ -284,7 +285,7 @@
           "version": "2.0.0",
           "artifact": "ml/artifacts/model.joblib",
           "date_range": null,
-          "seconds": 362
+          "seconds": 287
         }
       ]
     }

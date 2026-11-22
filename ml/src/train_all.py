@@ -230,12 +230,12 @@ def split_indices(n: int, y: np.ndarray, spec: dict):
 def baseline_crop_features(X: pd.DataFrame) -> pd.DataFrame:
     """Features of the original crop notebook, kept as the reference baseline."""
     X = X[CROP_FEATURES].astype(float).copy()
-    X["NPK_mean"] = (X["N"] + X["P"] + X["K"]) / 3
-    X["THI"] = X["temperature"] * X["humidity"] / 100
-    X["ph_category"] = np.select([X["ph"] < 5.5, X["ph"] <= 7.5], [0, 1], 2)
-    X["rainfall_level"] = np.select(
-        [X["rainfall"] <= 50, X["rainfall"] <= 100, X["rainfall"] <= 200], [0, 1, 2], 3
-    )
+    # X["NPK_mean"] = (X["N"] + X["P"] + X["K"]) / 3
+    # X["THI"] = X["temperature"] * X["humidity"] / 100
+    # X["ph_category"] = np.select([X["ph"] < 5.5, X["ph"] <= 7.5], [0, 1], 2)
+    # X["rainfall_level"] = np.select(
+    #     [X["rainfall"] <= 50, X["rainfall"] <= 100, X["rainfall"] <= 200], [0, 1, 2], 3
+    # )
     return X
 
 
@@ -469,27 +469,88 @@ def save_fig(fig, path: Path) -> str:
 
 
 def fig_class_distribution(labels: pd.Series, title: str, path: Path) -> str:
-    counts = labels.value_counts().sort_values()
-    fig, ax = plt.subplots(figsize=(9, max(3.5, 0.34 * len(counts) + 1.5)))
-    ax.barh(
-        counts.index.astype(str),
-        counts.values,
-        color=GREEN,
-        alpha=0.85,
-        edgecolor="white",
+    counts = labels.value_counts().sort_values(ascending=False)
+    n_crops = len(counts)
+    total_records = counts.sum()
+
+    # Colour-rich palette
+    colors = (sns.color_palette("tab20", 20) + sns.color_palette("tab20b", 4))[:n_crops]
+
+    fig, ax = plt.subplots(figsize=(14, 9), facecolor=BG)
+    ax.set_facecolor(BG)
+
+    wedges, texts, autotexts = ax.pie(
+        counts,
+        labels=None,
+        colors=colors,
+        autopct=lambda p: f"{p:.1f}%" if p > 4.0 else "",
+        startangle=135,
+        pctdistance=0.80,
+        wedgeprops=dict(width=0.55, edgecolor="white", linewidth=2.2),
+        textprops=dict(size=9),
     )
-    for i, v in enumerate(counts.values):
-        ax.text(
-            v + counts.max() * 0.01,
-            i,
-            f"{v:,}  ({v / counts.sum():.1%})",
-            va="center",
-            fontsize=9,
-            color="#37474f",
-        )
-    ax.set_xlim(0, counts.max() * 1.22)
-    ax.set_title(title)
-    ax.set_xlabel("Records")
+
+    # Percentage labels
+    for at in autotexts:
+        at.set_color("white")
+        at.set_fontweight("bold")
+        at.set_fontsize(8.5)
+
+    # Center annotation
+    ax.text(
+        0,
+        0.12,
+        f"{total_records:,}",
+        ha="center",
+        va="center",
+        fontsize=30,
+        fontweight="bold",
+        color=GREEN,
+    )
+
+    ax.text(
+        0,
+        -0.14,
+        "Total Records",
+        ha="center",
+        va="center",
+        fontsize=12,
+        color="#546e7a",
+    )
+
+    ax.text(
+        0,
+        -0.38,
+        f"{n_crops} Crop Classes",
+        ha="center",
+        va="center",
+        fontsize=11,
+        color="#78909c",
+        style="italic",
+    )
+
+    # Legend
+    legend = ax.legend(
+        wedges,
+        counts.index.astype(str),
+        title="Crop Types",
+        title_fontsize=11,
+        loc="center left",
+        bbox_to_anchor=(1.02, 0.5),
+        fontsize=10,
+        frameon=True,
+        framealpha=0.95,
+        edgecolor="#c8e6c9",
+        ncol=1,
+    )
+
+    legend.get_title().set_color(GREEN)
+    legend.get_title().set_fontweight("bold")
+
+    ax.set_title(title, fontsize=19, fontweight="bold", pad=22, color=GREEN)
+
+    plt.tight_layout()
+
     return save_fig(fig, path)
 
 
@@ -660,7 +721,7 @@ def fig_importance(imp: pd.DataFrame, path: Path) -> str:
 
 def crop_eda(df: pd.DataFrame, fig_dir: Path) -> dict:
     out = {}
-    fig, axes = plt.subplots(2, 4, figsize=(20, 9))
+    fig, axes = plt.subplots(1, 3, figsize=(20, 9))
     axes = axes.ravel()
     for ax, col, color in zip(axes, CROP_FEATURES, FEAT_COLORS):
         sns.histplot(
@@ -990,10 +1051,7 @@ def run_target(
                 "importance_mean": imp.importances_mean,
                 "importance_std": imp.importances_std,
             }
-        ).sort_values(
-            "importance_mean",
-            ascending=False
-        )
+        ).sort_values("importance_mean", ascending=False)
         # Save numerical results as CSV
         importance_path = REP_DIR / "feature_importance.csv"
         importance_path.parent.mkdir(parents=True, exist_ok=True)
@@ -1033,7 +1091,9 @@ def run_target(
         "model_name": final_name,
         "trained_at": datetime.now().isoformat(timespec="seconds"),
         "trained_rows": len(d),
-        "test_metrics": {k: final_m[k] for k in ("accuracy", "macro_f1", "weighted_f1")},
+        "test_metrics": {
+            k: final_m[k] for k in ("accuracy", "macro_f1", "weighted_f1")
+        },
     }
     save_bundle(
         ART_DIR,
@@ -1150,9 +1210,7 @@ def run_target(
         "example": example,
         "notes": notes,
         "version": MODEL_VERSION,
-        "artifact": (ART_DIR / "model.joblib")
-        .relative_to(ROOT)
-        .as_posix(),
+        "artifact": (ART_DIR / "model.joblib").relative_to(ROOT).as_posix(),
         "date_range": [
             str(d[spec["time_col"]].min().date()),
             str(d[spec["time_col"]].max().date()),
@@ -1184,10 +1242,8 @@ def run_target(
     ]
     results += ["", "## Most frequent confusions (true -> predicted)", ""]
     results += [f"- {a} -> {b}: {n}" for n, a, b in top_conf] or ["- none"]
-    (REP_DIR ).mkdir(parents=True, exist_ok=True)
-    (REP_DIR / "results.md").write_text(
-        "\n".join(results), encoding="utf-8"
-    )
+    (REP_DIR).mkdir(parents=True, exist_ok=True)
+    (REP_DIR / "results.md").write_text("\n".join(results), encoding="utf-8")
     print(f"    done in {time.time() - t_start:.0f}s")
     return entry
 
@@ -1248,7 +1304,9 @@ def main() -> None:
     index = {
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "modules": modules,
-        "skipped": [{"file": p.name, "reason": r} for p, r in skipped if "ML_ONLY" not in r],
+        "skipped": [
+            {"file": p.name, "reason": r} for p, r in skipped if "ML_ONLY" not in r
+        ],
     }
     REP_DIR.mkdir(parents=True, exist_ok=True)
     index["overview_figure"] = fig_overview(index["modules"], REP_DIR / "overview.png")

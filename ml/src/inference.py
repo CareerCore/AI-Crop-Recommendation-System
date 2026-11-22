@@ -4,19 +4,19 @@ import joblib
 import numpy as np
 import pandas as pd
 
-CROP_FEATURES = ["N", "P", "K", "temperature", "humidity", "ph", "rainfall"]
+CROP_FEATURES = [ "P", "humidity", "rainfall"]
 
 
 def add_crop_features(X: pd.DataFrame) -> pd.DataFrame:
     """Row-wise feature engineering with no fitted state (cannot leak). Used at training AND serving."""
     X = X[CROP_FEATURES].astype(float).copy()
-    X["NPK_sum"] = X["N"] + X["P"] + X["K"]
-    X["N_to_P"] = X["N"] / (X["P"] + 1)
-    X["N_to_K"] = X["N"] / (X["K"] + 1)
-    X["P_to_K"] = X["P"] / (X["K"] + 1)
-    X["THI"] = X["temperature"] * X["humidity"] / 100
-    X["ph_dev"] = (X["ph"] - 6.5).abs()
-    X["log_rain"] = np.log1p(X["rainfall"])
+    # X["NPK_sum"] = X["N"] + X["P"] + X["K"]
+    # X["N_to_P"] = X["N"] / (X["P"] + 1)
+    # X["N_to_K"] = X["N"] / (X["K"] + 1)
+    # X["P_to_K"] = X["P"] / (X["K"] + 1)
+    # X["THI"] = X["temperature"] * X["humidity"] / 100
+    # X["ph_dev"] = (X["ph"] - 6.5).abs()
+    # X["log_rain"] = np.log1p(X["rainfall"])
     return X
 
 
@@ -33,18 +33,18 @@ def _top(bundle: dict, proba: np.ndarray, k: int) -> list[dict]:
 
 
 def predict_crop(
-    bundle: dict, N, P, K, temperature, humidity, ph, rainfall, top_k: int = 3
+    bundle: dict,  P, humidity, rainfall, top_k: int = 3
 ) -> list[dict]:
     """Top-k crop recommendations with probabilities."""
     row = pd.DataFrame(
         [
             {
-                "N": N,
+                # "N": N,
                 "P": P,
-                "K": K,
-                "temperature": temperature,
+                # "K": K,
+                # "temperature": temperature,
                 "humidity": humidity,
-                "ph": ph,
+                # "ph": ph,
                 "rainfall": rainfall,
             }
         ]
