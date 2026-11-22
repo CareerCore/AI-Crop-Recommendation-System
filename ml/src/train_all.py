@@ -479,15 +479,15 @@ def fig_class_distribution(labels: pd.Series, title: str, path: Path) -> str:
     fig, ax = plt.subplots(figsize=(14, 9), facecolor=BG)
     ax.set_facecolor(BG)
 
-    wedges, texts, autotexts = ax.pie(
+    wedges, _ , autotexts = ax.pie(
         counts,
         labels=None,
         colors=colors,
         autopct=lambda p: f"{p:.1f}%" if p > 4.0 else "",
         startangle=135,
         pctdistance=0.80,
-        wedgeprops=dict(width=0.55, edgecolor="white", linewidth=2.2),
-        textprops=dict(size=9),
+        wedgeprops={"width": 0.55, "edgecolor": "white", "linewidth": 2.2},
+        textprops={"size": 9},
     )
 
     # Percentage labels
