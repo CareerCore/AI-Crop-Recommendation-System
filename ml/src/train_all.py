@@ -973,6 +973,7 @@ def run_target(
         report, classes, fig_dir / "per_class_metrics.png"
     )
     if is_tab:
+        # Calculate permutation feature importance on the held-out test set
         imp = permutation_importance(
             final_model,
             Xte,
@@ -982,16 +983,35 @@ def run_target(
             random_state=SEED,
             n_jobs=-1,
         )
+        # Create a ranked feature-importance table
+        importance_df = pd.DataFrame(
+            {
+                "feature": Xte.columns,
+                "importance_mean": imp.importances_mean,
+                "importance_std": imp.importances_std,
+            }
+        ).sort_values(
+            "importance_mean",
+            ascending=False
+        )
+        # Save numerical results as CSV
+        importance_path = REP_DIR / "feature_importance.csv"
+        importance_path.parent.mkdir(parents=True, exist_ok=True)
+        importance_df.to_csv(importance_path, index=False)
+        # Generate feature-importance visualization
         figs["importance"] = fig_importance(
-            pd.DataFrame(
-                {
-                    "feature": Xte.columns,
-                    "importance": imp.importances_mean,
-                    "std": imp.importances_std,
+            importance_df.rename(
+                columns={
+                    "importance_mean": "importance",
+                    "importance_std": "std",
                 }
             ),
             fig_dir / "feature_importance.png",
         )
+        # Display the top 10 features in the terminal
+        print("\n    Top 10 important features:")
+        print(importance_df.head(10).to_string(index=False))
+        print(f"\n    Feature importance saved to: {importance_path}")
     print(
         f"    test: accuracy {final_m['accuracy']:.4f} | macro-F1 {final_m['macro_f1']:.4f} | "
         f"mistakes {final_m['errors']}/{final_m['n']}"
