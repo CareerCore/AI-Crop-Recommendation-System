@@ -11,9 +11,10 @@ Prepared for **XYZ**  ·  Delivered by [Muhammad Aun](https://aun.abcodify.com
 
 The project includes separate documentation for the machine learning pipeline, API, and dataset usage.
 
-- [Project Documentation](README.md) — Project overview and ML training pipeline.
-- [API Documentation](API_README.md) — FastAPI endpoints, installation, and usage.
-- [Dataset Usage & Copyright Disclaimer](DATASET_LICENSE.md) — Dataset terms, copyright, and responsible usage.
+- [Project Documentation](README.md) - Project overview and ML training pipeline.
+- [Running Guide (Training & API)](RUNNING_GUIDE.md) - How to run code on Local
+- [API Documentation](API_README.md) - FastAPI endpoints, installation, and usage.
+- [Dataset Usage & Copyright Disclaimer](DATASET_LICENSE.md) - Dataset terms, copyright, and responsible usage.
 - **Interactive Swagger Documentation:** Available locally at `/docs` after starting the API.
 
 

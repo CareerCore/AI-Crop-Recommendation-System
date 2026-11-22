@@ -67,9 +67,9 @@ ml/
 
 The API uses:
 
-- `crop_api.py` — defines the HTTP endpoints and request validation.
-- `inference.py` — loads the model bundle and performs crop predictions.
-- `train_all.py` — trains, evaluates, and saves the machine learning model.
+- `crop_api.py` - defines the HTTP endpoints and request validation.
+- `inference.py` - loads the model bundle and performs crop predictions.
+- `train_all.py` - trains, evaluates, and saves the machine learning model.
 
 ## Input Features
 
