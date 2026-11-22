@@ -165,13 +165,14 @@ def build(index: dict, root: Path) -> None:
             L += _grid(
                 [
                     ("Model comparison", f.get("selection")),
+                    ("Feature distributions", f.get("eda_distributions")),
                     ("Confusion matrix", f.get("confusion")),
                     ("Per-class precision / recall / F1", f.get("per_class")),
                     ("Label distribution", f.get("class_distribution")),
+                    ("Crop profiles", f.get("eda_profiles")),
                     ("Label mix over time", f.get("drift")),
                     ("Feature importance", f.get("importance")),
-                    ("Feature distributions", f.get("eda_distributions")),
-                    ("Crop profiles", f.get("eda_profiles")),
+                    ("EDA – Feature Correlation Heatmap ", f.get("correlation")),
                 ]
             )
             L.append("")
